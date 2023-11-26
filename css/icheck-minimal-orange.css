@@ -1,0 +1,27 @@
+/* icheckbox */
+.icheckbox_minimal-orange,
+.iradio_minimal-orange{float: left;margin-top: 8px; width: 20px;height: 20px;background: url(../images/orange.png) no-repeat; background-position-x: 0;background-position-y: 0;cursor: pointer;overflow: hidden;}
+.icheckbox_minimal-orange {background-position: 0 0;overflow: hidden;}
+.icheckbox_minimal-orange.hover {background-position: -20px 0;}
+.icheckbox_minimal-orange.checked{background-position: -40px 0;}
+.icheckbox_minimal-orange.disabled {background-position: -60px 0;cursor: default;}
+.icheckbox_minimal-orange.checked.disabled {background-position: -80px 0;}
+
+.iradio_minimal-orange {background-position: -100px 0;overflow: hidden;}
+.iradio_minimal-orange.hover {background-position: -120px  0;}
+.iradio_minimal-orange.checked {background-position: -140px 0;}
+.iradio_minimal-orange.disabled {background-position: -160px 0;cursor: default;}
+.iradio_minimal-orange.checked.disabled {background-position: -180px 0;}
+
+ 
+
+/* HiDPI support */
+@media (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi), (min-resolution: 1.25dppx) {
+    .icheckbox_minimal-blue,
+    .iradio_minimal-blue {
+        background-image: url(../images/orange@2x.png);
+        -webkit-background-size: 200px 20px;
+        background-size: 200px 20px;
+        overflow: hidden;
+    }
+} 
