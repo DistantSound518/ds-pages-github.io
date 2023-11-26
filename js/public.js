@@ -1,234 +1,114 @@
 /*
-	* ==============================================================================
+  * ==============================================================================
         _  _        _                 _                                 _                                               
     ___| |(_) ___ _| |_  ____ _____ _| |_  ___   ___  _   _  _____  ___| |  _     _   _     _       _  _   _   _        
    / __  || |/ __|__  _|/ _  |  _  |_   _|/ __| / _ \| | | ||  _  |/ __  | |_| | |_  |_  | | |  /|   |  | |_  |_   /|   
   | (__| || |\__ \ | |_  (_| | | | | | |_ \__ \| |_| | |_| || | | | (__| |  _  |   |   | | | | |_|  _|  | | | | | |_|   
    \_____||_||___/ |___|\____|_| |_| |___||___/ \___/|_____||_| |_|\_____| |_| |  _|  _| | |_|   | |_   | |_| |_|   |   
- 
-	* CSS Document Css DsGrid Start 
-	* Author: DistantSound 
-	* Date: 2020 
-	* IDE:  
+   
+  * CSS Document public js Start 
+  * Author: DistantSound / DistantSound@126.com
+  * Date: 2020 
+  * IDE :  
   * ---------------------------------------------------------------------------------------------
 */ 
-$(function() {
-	$(window).scroll(function() {
-			const scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
-			if (scrollTop > 100) {
-					$("header").addClass("header-active");
-			} else {
-					$("header").removeClass("header-active");
-			}
+
+$(function () {
+	$(window).scroll(function () {
+		var scrollTop = $(window).scrollTop();
+		if (scrollTop > 200) {
+			$(".header").addClass("header-active");
+		} else {
+			$(".header").removeClass("header-active");
+		}
 	});
 
-	const swiperBanner = new Swiper(".swiper-banner", {
-			loop: true,
-			observer: true,
-			observeParents: true,
-			speed: 1000,
-			autoplay: {
-					disableOnInteraction: false,
-					delay: 3500
-			}
+	$(".hader-nav-close").hide();
+	$(".hader-nav-close").hide();
+	$(".hader-nav-open").on("click", function () {
+		$(".hader").css("right", "0");
+		$(".hader-nav-close").css({color: "#36694b"}).show();
+		$(".hader-nav-open").hide();
 	});
 
-	$(".swiperTab1 .tab-head .item-head").each(function() {
-			const a = $(this).index();
-			$(this).on("click",
-			function() {
-					$(this).addClass("active").siblings().removeClass("active");
-					b.slideTo(a);
-			});
+	$(".hader-nav-close, .a-link").on("click", function () {
+		$(".hader").css("right", "-60%");
+		$(".hader-nav-close").hide();
+		$(".hader-nav-open").show();
 	});
-	const b = new Swiper(".swiperTab1 .tab-content", {
-			loop: false,
-			observer: true,
-			observeParents: true,
-			on: {
-					slideChange: function() {
-							$(".swiperTab1 .tab-head .item-head").eq(this.activeIndex).addClass("active").siblings().removeClass("active");
-					}
-			}
+ 
+	$(".my-swiper-banner-top").click(function () {
+		$("html,body").animate({scrollTop: "720px"}, 800);
 	});
-	$(".swiperTab2 .tab-head .item-head").each(function() {
-			const a = $(this).index();
-			$(this).on("click",
-			function() {
-					$(this).addClass("active").siblings().removeClass("active");
-					c.slideTo(a);
-			});
+
+	new Swiper(".swiper-banner", {
+		loop: true,
+		observer: true,
+		observeParents: true,
+		speed: 1000,
+		autoplay: {
+			disableOnInteraction: false,
+			delay: 3500,
+		},
+		pagination: {
+			el: ".swiper-pagination",
+			bulletClass: "my-bullet",
+		},
+		navigation: {
+			nextEl: '.my-swiper-button-next',
+			prevEl: '.my-swiper-button-prev',
+
+		},
+		on: {
+			init: function () {
+				swiperAnimateCache(this);
+				this.emit("slideChangeTransitionEnd");
+			},
+			slideChangeStart: function () {
+				swiperAnimate(this);
+			},
+			slideChangeTransitionEnd: function () {
+				swiperAnimate(this);
+			},
+		},
 	});
-	const c = new Swiper(".swiperTab2 .tab-content", {
-			loop: false,
-			observer: true,
-			observeParents: true,
-			on: {
-					slideChange: function() {
-							$(".swiperTab2 .tab-head .item-head").eq(this.activeIndex).addClass("active").siblings().removeClass("active");
-					}
-			}
+
+	var swiper = new Swiper(".swiper-group-pic", {
+		slidesPerView: 2,
+		slidesPerColumn: 1,
+		slidesPerGroup: 2,
+		pagination: {
+			el: ".swiper-pagination",
+			bulletClass: "my-bullet",
+		},
+		breakpoints: {
+			576: {
+				slidesPerView: 2,
+				slidesPerColumn: 1,
+				slidesPerGroup: 2,
+			},
+			768: {
+				slidesPerView: 3,
+				slidesPerColumn: 1,
+				slidesPerGroup: 3,
+			},
+			992: {
+				slidesPerView: 4,
+				slidesPerColumn: 2,
+				slidesPerGroup: 4,
+			},
+			1200: {
+				slidesPerView: 4,
+				slidesPerColumn: 2,
+				slidesPerGroup: 4,
+			},
+		},
 	});
-	$(".swiperTab3 .tab-head .item-head").each(function() {
-			const a = $(this).index();
-			$(this).on("click",
-			function() {
-					$(this).addClass("active").siblings().removeClass("active");
-					d.slideTo(a);
-			});
-	});
-	const d = new Swiper(".swiperTab3 .tab-content", {
-			loop: false,
-			observer: true,
-			observeParents: true,
-			on: {
-					slideChange: function() {
-							$(".swiperTab3 .tab-head .item-head").eq(this.activeIndex).addClass("active").siblings().removeClass("active");
-					}
-			}
-	});
-	$(".swiperTab4 .tab-head .item-head").each(function() {
-			const a = $(this).index();
-			$(this).on("click",
-			function() {
-					$(this).addClass("active").siblings().removeClass("active");
-					e.slideTo(a);
-			});
-	});
-	const e = new Swiper(".swiperTab4 .tab-content", {
-			loop: false,
-			observer: true,
-			observeParents: true,
-			on: {
-					slideChange: function() {
-							$(".swiperTab4 .tab-head .item-head").eq(this.activeIndex).addClass("active").siblings().removeClass("active");
-					}
-			}
-	});
-	$(".swiperTab5 .tab-head .item-head").each(function() {
-			const a = $(this).index();
-			$(this).on("click",
-			function() {
-					$(this).addClass("active").siblings().removeClass("active");
-					f.slideTo(a);
-			});
-	});
-	const f = new Swiper(".swiperTab5 .tab-content", {
-			loop: false,
-			observer: true,
-			observeParents: true,
-			on: {
-					slideChange: function() {
-							$(".swiperTab5 .tab-head .item-head").eq(this.activeIndex).addClass("active").siblings().removeClass("active");
-					}
-			}
-	});
-	$(".swiperTab6 .tab-head .item-head").each(function() {
-			const a = $(this).index();
-			$(this).on("click",
-			function() {
-					$(this).addClass("active").siblings().removeClass("active");
-					g.slideTo(a);
-			});
-	});
-	const g = new Swiper(".swiperTab6 .tab-content", {
-			loop: false,
-			observer: true,
-			observeParents: true,
-			on: {
-					slideChange: function() {
-							$(".swiperTab6 .tab-head .item-head").eq(this.activeIndex).addClass("active").siblings().removeClass("active");
-					}
-			}
-	});
-	$(".swiperTab7 .tab-head .item-head").each(function() {
-			const a = $(this).index();
-			$(this).on("click",
-			function() {
-					$(this).addClass("active").siblings().removeClass("active");
-					h.slideTo(a);
-			});
-	});
-	const h = new Swiper(".swiperTab7 .tab-content", {
-			loop: false,
-			observer: true,
-			observeParents: true,
-			on: {
-					slideChange: function() {
-							$(".swiperTab7 .tab-head .item-head").eq(this.activeIndex).addClass("active").siblings().removeClass("active");
-					}
-			}
-	});
-	$(".swiperTab8 .tab-head .item-head").each(function() {
-			const a = $(this).index();
-			$(this).on("click",
-			function() {
-					$(this).addClass("active").siblings().removeClass("active");
-					i.slideTo(a);
-			});
-	});
-	const i = new Swiper(".swiperTab8 .tab-content", {
-			loop: false,
-			observer: true,
-			observeParents: true,
-			on: {
-					slideChange: function() {
-							$(".swiperTab8 .tab-head .item-head").eq(this.activeIndex).addClass("active").siblings().removeClass("active");
-					}
-			}
-	});
-	$(".swiperTab9 .tab-head .item-head").each(function() {
-			const a = $(this).index();
-			$(this).on("click",
-			function() {
-					$(this).addClass("active").siblings().removeClass("active");
-					j.slideTo(a);
-			});
-	});
-	const j = new Swiper(".swiperTab9 .tab-content", {
-			loop: false,
-			observer: true,
-			observeParents: true,
-			on: {
-					slideChange: function() {
-							$(".swiperTab9 .tab-head .item-head").eq(this.activeIndex).addClass("active").siblings().removeClass("active");
-					}
-			}
-	});
-	$(".swiperTab10 .tab-head .item-head").each(function() {
-			const a = $(this).index();
-			$(this).on("click",
-			function() {
-					$(this).addClass("active").siblings().removeClass("active");
-					k.slideTo(a);
-			});
-	});
-	const k = new Swiper(".swiperTab10 .tab-content", {
-			loop: false,
-			observer: true,
-			observeParents: true,
-			on: {
-					slideChange: function() {
-							$(".swiperTab10 .tab-head .item-head").eq(this.activeIndex).addClass("active").siblings().removeClass("active");
-					}
-			}
-	});
-	$(".swiperTab11 .tab-head .item-head").each(function() {
-			const a = $(this).index();
-			$(this).on("click",
-			function() {
-					$(this).addClass("active").siblings().removeClass("active");
-					l.slideTo(a);
-			});
-	});
-	const l = new Swiper(".swiperTab11 .tab-content", {
-			loop: false,
-			observer: true,
-			observeParents: true,
-			on: {
-					slideChange: function() {
-							$(".swiperTab11 .tab-head .item-head").eq(this.activeIndex).addClass("active").siblings().removeClass("active");
-					}
-			}
+	$(".pager-content").each(function () {
+		$(this).find(".span-s").first().addClass("current");
+		$(this).find(".span-s").on("click", function () {
+			$(this).siblings().removeClass("current");
+			$(this).addClass("current");
+		});
 	});
 });
